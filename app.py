@@ -11,7 +11,7 @@ st.set_page_config(
     page_icon="🇹🇿",
     initial_sidebar_state="collapsed",
 )
-st.header("Tanzania Regional Analytics")
+st.subheader("Tanzania Regional Analytics")
 st.caption("UCHAMBUZI WA BEI ZA MAFUTA · TANZANIA")
 
 # 2. Unganisha na PostgreSQL Database yako
@@ -44,6 +44,9 @@ df = load_data()
 st.markdown("""
 <style>
 .block-container {max-width: 1480px; padding: 1.5rem 2rem 2.5rem;}
+@media (max-width: 640px) {
+    .block-container {padding: 1rem 1rem 2rem;}
+}
 [data-testid="stMetric"] {
     background: #ffffff;
     border: 1px solid #e1e8ed;

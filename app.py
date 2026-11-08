@@ -43,8 +43,8 @@ df = load_data()
 st.markdown("""
 <style>
 .block-container {max-width: 1480px; padding: 3.5rem 2rem 1rem;}
-h3 {font-size: 1.35rem !important; line-height: 1.25 !important; margin-bottom: 0.25rem !important;}
-h4 {font-size: 1.1rem !important; line-height: 1.25 !important; margin-top: 0.2rem !important; margin-bottom: 0.2rem !important;}
+h3 {font-size: 1.25rem !important; line-height: 1.15 !important; padding: 0 !important; margin: 0 0 0.2rem !important;}
+h4 {font-size: 1rem !important; line-height: 1.15 !important; padding: 0 !important; margin: 0.2rem 0 !important;}
 [data-testid="stMetricValue"] > div {font-size: 1.4rem !important; line-height: 1.15 !important;}
 @media (max-width: 640px) {
     .block-container {padding: 4.25rem 1rem 1rem;}
@@ -87,7 +87,6 @@ if not df.empty:
             kadi2.metric("Wastani wa Dizeli", f"TZS {data['bei_dizeli'].mean():,.0f}")
             kadi3.metric("Mikoa yenye data", f"{data['mkoa'].nunique():,}")
 
-            st.markdown("#### Muhtasari wa bei kwa mkoa")
             regional = data.groupby("mkoa", as_index=False)[["bei_petroli", "bei_dizeli"]].mean()
             chati_mstari, chati_donati = st.columns([1.7, 1], gap="large", wrap=True)
 

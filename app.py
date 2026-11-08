@@ -12,7 +12,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 st.subheader("Tanzania Regional Analytics")
-st.caption("UCHAMBUZI WA BEI ZA MAFUTA · TANZANIA")
 
 # 2. Unganisha na PostgreSQL Database yako
 # Hifadhi URL ya database kwenye Streamlit Secrets au env var, kamwe ndani ya source.
@@ -45,8 +44,8 @@ st.markdown("""
 <style>
 .block-container {max-width: 1480px; padding: 3.5rem 2rem 1rem;}
 h3 {font-size: 1.35rem !important; line-height: 1.25 !important; margin-bottom: 0.25rem !important;}
-h4 {font-size: 1.15rem !important; line-height: 1.3 !important; margin-top: 0.45rem !important; margin-bottom: 0.45rem !important;}
-[data-testid="stMetricValue"] > div {font-size: 1.55rem !important; line-height: 1.2 !important;}
+h4 {font-size: 1.1rem !important; line-height: 1.25 !important; margin-top: 0.2rem !important; margin-bottom: 0.2rem !important;}
+[data-testid="stMetricValue"] > div {font-size: 1.4rem !important; line-height: 1.15 !important;}
 @media (max-width: 640px) {
     .block-container {padding: 4.25rem 1rem 1rem;}
     h3 {font-size: 1.15rem !important;}
@@ -57,7 +56,7 @@ h4 {font-size: 1.15rem !important; line-height: 1.3 !important; margin-top: 0.45
     border: 1px solid #e1e8ed;
     border-top: 4px solid #167d88;
     border-radius: 12px;
-    padding: 8px 14px;
+    padding: 4px 12px;
 }
 [data-testid="stMetricLabel"] {color: #526475;}
 [data-testid="stMetricValue"] {color: #142b3a;}
@@ -114,7 +113,7 @@ if not df.empty:
                         labels={"mkoa": "Mkoa", "Bei (TZS)": "Wastani (TZS)"},
                     )
                     fig_line.update_layout(
-                        template="plotly_white", height=190, autosize=True,
+                        template="plotly_white", height=150, autosize=True,
                         margin=dict(l=8, r=8, t=12, b=8), legend_title_text="", hovermode="x unified",
                         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
                     )
@@ -139,7 +138,7 @@ if not df.empty:
                     )
                     idadi_mikoa = regional["mkoa"].nunique()
                     fig_donut.update_layout(
-                        template="plotly_white", height=190, autosize=True,
+                        template="plotly_white", height=150, autosize=True,
                         margin=dict(l=18, r=18, t=12, b=8), legend_title_text="",
                         legend=dict(orientation="v", yanchor="middle", y=0.5, xanchor="left", x=1.0),
                         annotations=[dict(
@@ -167,7 +166,7 @@ if not df.empty:
                 labels={"mkoa": "Mkoa"},
             )
             fig_bar.update_layout(
-                template="plotly_white", height=190, autosize=True, margin=dict(l=8, r=8, t=12, b=8),
+                template="plotly_white", height=150, autosize=True, margin=dict(l=8, r=8, t=12, b=8),
                 legend_title_text="", hovermode="x unified",
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
             )

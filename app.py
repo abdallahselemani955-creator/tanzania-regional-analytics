@@ -46,6 +46,8 @@ st.markdown("""
 .block-container {max-width: 1480px; padding: 1.5rem 2rem 2.5rem;}
 @media (max-width: 640px) {
     .block-container {padding: 1rem 1rem 2rem;}
+    h3 {font-size: 1.15rem !important; line-height: 1.25 !important;}
+    h4 {font-size: 1rem !important; line-height: 1.3 !important;}
 }
 [data-testid="stMetric"] {
     background: #ffffff;

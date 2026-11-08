@@ -6,8 +6,8 @@ from sqlalchemy import create_engine
 
 # 1. Muundo wa Ukurasa wa Streamlit
 st.set_page_config(page_title="Tanzania Regional Analytics", layout="wide", page_icon="🇹🇿")
-st.title("🇹🇿 Tanzania Regional Economic & Fuel Analytics")
-st.markdown("Mfumo wa majaribio unaochanganua bei za mafuta na shughuli za kiuchumi kwa mikoa ya Tanzania.")
+st.title("🇹🇿 Tanzania Regional Analytics")
+st.caption("Uchambuzi wa bei za mafuta na shughuli za kiuchumi kwa mikoa ya Tanzania.")
 
 # 2. Unganisha na PostgreSQL Database yako
 # Hifadhi URL ya database kwenye Streamlit Secrets au env var, kamwe ndani ya source.
@@ -48,6 +48,8 @@ st.markdown("""
 }
 [data-testid="stMetricLabel"] {color: #53656a;}
 [data-testid="stMetricValue"] {color: #20343a;}
+[data-testid="stMetricLabel"] p {white-space: normal; overflow-wrap: anywhere;}
+[data-testid="stMetricValue"] {overflow-wrap: anywhere;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -70,13 +72,13 @@ if not df.empty:
             st.caption("Muhtasari wa bei za mafuta kwa mikoa ya Tanzania")
 
             # Kadi za viashiria muhimu ziko mstari mmoja juu ya chati.
-            kadi1, kadi2, kadi3 = st.columns(3)
+            kadi1, kadi2, kadi3 = st.columns(3, gap="medium", wrap=True)
             kadi1.metric("Wastani wa Petroli", f"TZS {data['bei_petroli'].mean():,.0f}")
             kadi2.metric("Wastani wa Dizeli", f"TZS {data['bei_dizeli'].mean():,.0f}")
             kadi3.metric("Mikoa yenye data", f"{data['mkoa'].nunique():,}")
 
             st.markdown("### Mwenendo na mgawanyo wa bei")
-            chati_mstari, chati_donati = st.columns([1.7, 1], gap="large")
+            chati_mstari, chati_donati = st.columns([1.6, 1], gap="large", wrap=True)
 
             with chati_mstari:
                 if "mwezi_mwaka" in data.columns:
@@ -104,10 +106,10 @@ if not df.empty:
                         labels={"mwezi_mwaka": "Mwezi", "Bei (TZS)": "Bei (TZS)"},
                     )
                     fig_line.update_layout(
-                        template="plotly_white", height=360, margin=dict(l=10, r=10, t=25, b=10),
-                        legend_title_text="", hovermode="x unified",
+                        template="plotly_white", height=340, autosize=True,
+                        margin=dict(l=10, r=10, t=25, b=10), legend_title_text="", hovermode="x unified",
                     )
-                    st.plotly_chart(fig_line, width="stretch")
+                    st.plotly_chart(fig_line, width="stretch", config={"responsive": True, "displayModeBar": False})
                 else:
                     st.info("Nguzo ya mwezi_mwaka haipo; mwenendo wa kila mwezi hauwezi kuonyeshwa.")
 
@@ -123,10 +125,10 @@ if not df.empty:
                 )
                 fig_donut.update_traces(textposition="inside", textinfo="percent", hovertemplate="%{label}<br>TZS %{value:,.0f}<extra></extra>")
                 fig_donut.update_layout(
-                    template="plotly_white", height=360, margin=dict(l=10, r=10, t=25, b=10),
-                    legend_title_text="Mkoa",
+                    template="plotly_white", height=340, autosize=True,
+                    margin=dict(l=10, r=10, t=25, b=10), legend_title_text="Mkoa",
                 )
-                st.plotly_chart(fig_donut, width="stretch")
+                st.plotly_chart(fig_donut, width="stretch", config={"responsive": True, "displayModeBar": False})
 
             st.markdown("### Ulinganisho wa wastani wa bei kwa mkoa")
             ulinganisho = (
@@ -147,10 +149,11 @@ if not df.empty:
                 labels={"mkoa": "Mkoa"},
             )
             fig_bar.update_layout(
-                template="plotly_white", height=400, margin=dict(l=10, r=10, t=25, b=10),
+                template="plotly_white", height=360, autosize=True, margin=dict(l=10, r=10, t=25, b=10),
                 legend_title_text="", hovermode="x unified",
             )
-            st.plotly_chart(fig_bar, width="stretch")
+            fig_bar.update_xaxes(tickangle=-15, automargin=True)
+            st.plotly_chart(fig_bar, width="stretch", config={"responsive": True, "displayModeBar": False})
 
             with st.expander("Angalia data ghafi"):
                 st.dataframe(data, width="stretch", hide_index=True)

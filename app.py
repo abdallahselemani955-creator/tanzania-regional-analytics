@@ -20,7 +20,11 @@ if not DATABASE_URL:
 @st.cache_data # Inasaidia app iwe na kasi kwa kutovuta data kila sekunde
 def load_data():
     try:
-        engine = create_engine(DATABASE_URL)
+        # Pin SQLAlchemy to the installed psycopg2 driver regardless of URL defaults.
+        database_url = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+        if database_url.startswith("postgresql://"):
+            database_url = database_url.replace("postgresql://", "postgresql+psycopg2://", 1)
+        engine = create_engine(database_url)
         df = pd.read_sql("SELECT * FROM regional_analytics", engine)
         return df
     except Exception as e:

@@ -43,18 +43,21 @@ df = load_data()
 
 st.markdown("""
 <style>
-.block-container {max-width: 1480px; padding: 1.5rem 2rem 2.5rem;}
+.block-container {max-width: 1480px; padding: 3.5rem 2rem 1rem;}
+h3 {font-size: 1.35rem !important; line-height: 1.25 !important; margin-bottom: 0.25rem !important;}
+h4 {font-size: 1.15rem !important; line-height: 1.3 !important; margin-top: 0.45rem !important; margin-bottom: 0.45rem !important;}
+[data-testid="stMetricValue"] > div {font-size: 1.55rem !important; line-height: 1.2 !important;}
 @media (max-width: 640px) {
-    .block-container {padding: 4.25rem 1rem 2rem;}
-    h3 {font-size: 1.15rem !important; line-height: 1.25 !important;}
-    h4 {font-size: 1rem !important; line-height: 1.3 !important;}
+    .block-container {padding: 4.25rem 1rem 1rem;}
+    h3 {font-size: 1.15rem !important;}
+    h4 {font-size: 1rem !important;}
 }
 [data-testid="stMetric"] {
     background: #ffffff;
     border: 1px solid #e1e8ed;
     border-top: 4px solid #167d88;
     border-radius: 12px;
-    padding: 14px 18px;
+    padding: 8px 14px;
 }
 [data-testid="stMetricLabel"] {color: #526475;}
 [data-testid="stMetricValue"] {color: #142b3a;}
@@ -79,8 +82,6 @@ if not df.empty:
         if data.empty:
             st.warning("Hakuna bei halali zilizopatikana za kuonyesha.")
         else:
-            st.markdown("#### Muhtasari wa soko")
-
             # Kadi za viashiria muhimu ziko mstari mmoja juu ya chati.
             kadi1, kadi2, kadi3 = st.columns(3, gap="medium", wrap=True)
             kadi1.metric("Wastani wa Petroli", f"TZS {data['bei_petroli'].mean():,.0f}")
@@ -113,7 +114,7 @@ if not df.empty:
                         labels={"mkoa": "Mkoa", "Bei (TZS)": "Wastani (TZS)"},
                     )
                     fig_line.update_layout(
-                        template="plotly_white", height=310, autosize=True,
+                        template="plotly_white", height=220, autosize=True,
                         margin=dict(l=8, r=8, t=12, b=8), legend_title_text="", hovermode="x unified",
                         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
                     )
@@ -138,7 +139,7 @@ if not df.empty:
                     )
                     idadi_mikoa = regional["mkoa"].nunique()
                     fig_donut.update_layout(
-                        template="plotly_white", height=310, autosize=True,
+                        template="plotly_white", height=220, autosize=True,
                         margin=dict(l=18, r=18, t=12, b=8), legend_title_text="",
                         legend=dict(orientation="v", yanchor="middle", y=0.5, xanchor="left", x=1.0),
                         annotations=[dict(
@@ -166,7 +167,7 @@ if not df.empty:
                 labels={"mkoa": "Mkoa"},
             )
             fig_bar.update_layout(
-                template="plotly_white", height=350, autosize=True, margin=dict(l=8, r=8, t=12, b=8),
+                template="plotly_white", height=230, autosize=True, margin=dict(l=8, r=8, t=12, b=8),
                 legend_title_text="", hovermode="x unified",
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
             )

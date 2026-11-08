@@ -114,7 +114,7 @@ if not df.empty:
                         labels={"mkoa": "Mkoa", "Bei (TZS)": "Wastani (TZS)"},
                     )
                     fig_line.update_layout(
-                        template="plotly_white", height=220, autosize=True,
+                        template="plotly_white", height=190, autosize=True,
                         margin=dict(l=8, r=8, t=12, b=8), legend_title_text="", hovermode="x unified",
                         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
                     )
@@ -134,12 +134,12 @@ if not df.empty:
                         labels={"mkoa": "Mkoa", "bei_petroli": "Petroli (TZS)"},
                     )
                     fig_donut.update_traces(
-                        textposition="outside", texttemplate="%{value:,.0f} (%{percent})",
+                        textposition="inside", texttemplate="%{percent}",
                         hovertemplate="%{label}<br>TZS %{value:,.0f}<extra></extra>",
                     )
                     idadi_mikoa = regional["mkoa"].nunique()
                     fig_donut.update_layout(
-                        template="plotly_white", height=220, autosize=True,
+                        template="plotly_white", height=190, autosize=True,
                         margin=dict(l=18, r=18, t=12, b=8), legend_title_text="",
                         legend=dict(orientation="v", yanchor="middle", y=0.5, xanchor="left", x=1.0),
                         annotations=[dict(
@@ -167,7 +167,7 @@ if not df.empty:
                 labels={"mkoa": "Mkoa"},
             )
             fig_bar.update_layout(
-                template="plotly_white", height=230, autosize=True, margin=dict(l=8, r=8, t=12, b=8),
+                template="plotly_white", height=190, autosize=True, margin=dict(l=8, r=8, t=12, b=8),
                 legend_title_text="", hovermode="x unified",
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
             )
